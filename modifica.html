@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Modificar Aerolínea</title>
+
+ <script type="module" src="lib/js/consumeJson.js"></script>
+ <script type="module" src="lib/js/submitForm.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+
+ <script>
+  // Obtiene los parámetros de la página.
+  const params = new URL(location.href).searchParams;
+ </script>
+
+</head>
+
+<body onload="if (params.size > 0) {
+    consumeJson('srv/aerolinea.php?' + params)
+    .then(respuesta => muestraObjeto(forma, respuesta.body))
+    .catch(muestraError)
+  }">
+
+<form id="forma" onsubmit="submitForm('srv/aerolinea-modifica.php', event)
+    .then(respuesta => location.href = 'index.html')
+    .catch(muestraError)">
+
+<h1>Modificar Aerolínea</h1>
+<p><a href="index.html">Cancelar</a></p>
+
+<input name="id" type="hidden">
+
+<p>
+    <label>
+        Nombre *
+        <input name="nombre" value="Cargando&hellip;" required>
+    </label>
+</p>
+
+<p>
+    <label>
+        País *
+        <input name="pais" value="Cargando&hellip;" required>
+    </label>
+</p>
+
+<p>
+    <label>
+        Siglas *
+        <input name="siglas" value="Cargando&hellip;" required>
+    </label>
+</p>
+
+<p>* Campos obligatorios</p>
+
+   <button type="submit">Guardar</button>
+   <button type="button" onclick="
+       if (params.size > 0 && confirm('¿Eliminar aerolínea?')) {
+           consumeJson('srv/aerolinea-elimina.php?' + params)
+               .then(() => location.href = 'index.html')
+               .catch(muestraError)
+       }">
+       Eliminar
+   </button>
+
+  </p>
+
+ </form>
+
+ <footer>
+  <div class="footer-contenido">
+    <div class="derechos-autor">
+      <p>&copy; 2025 Aerolíneas</p>
+      <p>Todos los derechos reservados. Escalante Rodriguez</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

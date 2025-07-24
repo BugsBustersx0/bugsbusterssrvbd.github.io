@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Aerolíneas</title>
+
+ <script type="module" src="lib/js/consumeJson.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body onload="consumeJson('srv/aerolineas.php')
+    .then(respuesta => muestraObjeto(document, respuesta.body))
+    .catch(muestraError)">
+
+<h1>Catálogo de Aerolíneas</h1>
+
+ <p><a href="agrega.html">Agregar Aerolínea</a></p>
+
+ <ul id="lista">
+  <li><progress max="100">Cargando&hellip;</progress></li>
+ </ul>
+
+ <footer>
+  <div class="footer-contenido">
+    <div class="derechos-autor">
+      <p>&copy; 2025 Aerolíneas</p>
+      <p>Todos los derechos reservados. Escalante Rodriguez</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

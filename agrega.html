@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Agregar Aerolínea</title>
+ <script type="module" src="lib/js/submitForm.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+ <form onsubmit="submitForm('srv/aerolinea-agrega.php', event)
+    .then(modelo => location.href = 'index.html')
+    .catch(muestraError)">
+
+  <h1>Agregar Aerolínea</h1>
+
+  <p><a href="index.html">Cancelar</a></p>
+
+  <p>
+    <label>
+        Nombre *
+        <input name="nombre" required>
+    </label>
+  </p>
+
+  <p>
+    <label>
+        País *
+        <input name="pais" required>
+    </label>
+  </p>
+
+  <p>
+    <label>
+        Siglas *
+        <input name="siglas" required>
+    </label>
+  </p>
+
+  <p>* Campos obligatorios</p>
+
+  <p><button type="submit">Agregar</button></p>
+
+ </form>
+
+ <footer>
+    <div class="footer-contenido">
+      <div class="derechos-autor">
+        <p>&copy; 2025 Aerolíneas</p>
+        <p>Todos los derechos reservados. Escalante Rodriguez</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
